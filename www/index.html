@@ -36,26 +36,28 @@
 
     function searchType(){
          let Type = $("#type").val();
+         let Type2=$("#type2").val();
          let TestDataClass = ncmb.DataStore(db);
          let subqueryA = TestDataClass.equalTo("type",Type);
          let subqueryB = TestDataClass.equalTo("type2",Type);
+         let subquery1 = TestDataClass.equalTo("type",Type2);
+         let subquery2 = TestDataClass.equalTo("type2",Type2);
          TestDataClass
-         .or([subqueryA,subqueryB])
+         .or([subqueryA,subqueryB,subquery1,subquery2])
          .fetchAll()
          .then(function(results) {
              showResults(results);
              })
     }
 
-    function searchLevel(){
-        let level = parseInt($("#level").val());
+    function add(){
+        let name = parseInt($("#name").val());
+        let type = parseInt($("#type").val());
+        let type2 = parseInt($("#type2").val());
         let TestDataClass = ncmb.DataStore(db);
-        TestDataClass
-        .equalTo("level", level)
-        .fetchAll()
-        .then(function(results) {
-            showResults(results);
-            })
+        newRecord.set(name, type,type2);
+        newRecord.save();
+        
     }
 
     function showResults(results) {
@@ -82,13 +84,13 @@
     <label for="name">name:</label>
     <input id="name" type="text" placeholder="name">
   </div>
-    <div>
-    <label for="name">name2:</label>
-    <input id="name" type="text" placeholder="name">
-  </div>
   <div>
     <label for="type">type:</label>
     <input id="type" type="text" placeholder="type">
+  </div>
+  <div>
+    <label for="type2">type2:</label>
+    <input id="type2" type="text" placeholder="type2">
   </div>
 
   <div id="button">
@@ -96,7 +98,7 @@
     <button class="btn" onclick="searchName()">Name</button>
     <br>
     <button class="btn" onclick="searchType()">type</button>
-    <button class="btn" onclick="searchLevel()">Level</button> 
+    <button class="btn" onclick="add()">add</button> 
   </div>
   <div id="message">message area</div>
 </body>
