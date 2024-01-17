@@ -50,16 +50,6 @@
              })
     }
 
-    function add(){
-        let name = parseInt($("#name").val());
-        let type = parseInt($("#type").val());
-        let type2 = parseInt($("#type2").val());
-        let TestDataClass = ncmb.DataStore(db);
-        newRecord.set(name, type,type2);
-        newRecord.save();
-        
-    }
-
     function showResults(results) {
       // テーブルのヘッダを生成
       let msg = "<table><tr><th>name</th><th>type</th><th>type2</th></tr>";
@@ -96,9 +86,7 @@
   <div id="button">
     <button class="btn" onclick="fetchAll()">Fetch All</button>
     <button class="btn" onclick="searchName()">Name</button>
-    <br>
     <button class="btn" onclick="searchType()">type</button>
-    <button class="btn" onclick="add()">add</button> 
   </div>
   <div id="message">message area</div>
 </body>
